@@ -17,6 +17,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.ArrayList
 
 var imagesX: ArrayList<String> = ArrayList()
+var genderX: ArrayList<String> = ArrayList()
+var fNameX: ArrayList<String> = ArrayList()
+var alignmentX: ArrayList<String> = ArrayList()
+var p1X: ArrayList<Int> = ArrayList()
+var p2X : ArrayList<Int> = ArrayList()
+var p3X: ArrayList<Int> = ArrayList()
+var p4X: ArrayList<Int> = ArrayList()
+var p5X: ArrayList<Int> = ArrayList()
+var p6X: ArrayList<Int> = ArrayList()
+var fAX: ArrayList<String> = ArrayList()
+
 
 class HeroGallery : AppCompatActivity() {
 
@@ -46,8 +57,18 @@ class HeroGallery : AppCompatActivity() {
 
                 for( i in 0..550){
                     imagesX.add(response.body()!![i].images.lg)
-                }
+                    genderX.add(response.body()!![i].appearance.gender)
+                    fNameX.add(response.body()!![i].biography.fullName)
+                    alignmentX.add(response.body()!![i].biography.alignment)
+                    p1X.add(response.body()!![i].powerstats.intelligence)
+                    p2X.add(response.body()!![i].powerstats.strength)
+                    p3X.add(response.body()!![i].powerstats.speed)
+                    p4X.add(response.body()!![i].powerstats.durability)
+                    p5X.add(response.body()!![i].powerstats.power)
+                    p6X.add(response.body()!![i].powerstats.combat)
+                    fAX.add(response.body()!![i].biography.firstAppearance)
 
+                }
                 Log.d("Amarjit", "${imagesX}")
 
                 adapter.notifyDataSetChanged()
