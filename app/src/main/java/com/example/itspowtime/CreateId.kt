@@ -57,7 +57,7 @@ class CreateId : AppCompatActivity() {
                                     //gives toast if successful
                                     Toast.makeText(this,"Registration successful", Toast.LENGTH_SHORT).show()
 
-                                    val intent = Intent(this, Home::class.java)
+                                    val intent = Intent(this, HomePage::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("pawsome_email_id",userEmail)
                                     startActivity(intent)

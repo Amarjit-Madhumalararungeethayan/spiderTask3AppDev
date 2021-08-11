@@ -19,6 +19,13 @@ class HeroDetails : AppCompatActivity() {
 
     lateinit var binding: ActivityHeroDetails2Binding
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, HomePage::class.java)
+        startActivity(intent)
+        finishAffinity()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHeroDetails2Binding.inflate(layoutInflater)
@@ -43,11 +50,13 @@ class HeroDetails : AppCompatActivity() {
 
 
         binding.back.setOnClickListener(){
-            val intent = Intent(this, HeroGallery::class.java)
-            val compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
-            startActivity(intent,compat.toBundle())
-            finish()
+            super.onBackPressed()
         }
+
+        binding.textView.setOnClickListener(){
+            super.onBackPressed()
+        }
+
         binding.share.setOnClickListener(){
 
             val img = getBitmapFromTheView(imageView3)
@@ -58,7 +67,7 @@ class HeroDetails : AppCompatActivity() {
             intent.type = "img/*"
 
                 intent.putExtra(
-                    Intent.EXTRA_TEXT, ("Check out this dog - ${fNameX[position]}"))
+                    Intent.EXTRA_TEXT, ("Check out this Super Hero - ${fNameX[position]}"))
                 intent.type = "text/plain"
 
 

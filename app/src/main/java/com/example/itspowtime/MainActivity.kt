@@ -17,6 +17,17 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.ArrayList
 
+var nameS: ArrayList<String> = ArrayList()
+var genderS: ArrayList<String> = ArrayList()
+var fNameS: ArrayList<String> = ArrayList()
+var alignmentS: ArrayList<String> = ArrayList()
+var p1S: ArrayList<Int> = ArrayList()
+var p2S : ArrayList<Int> = ArrayList()
+var p3S: ArrayList<Int> = ArrayList()
+var p4S: ArrayList<Int> = ArrayList()
+var p5S: ArrayList<Int> = ArrayList()
+var p6S: ArrayList<Int> = ArrayList()
+var fAS: ArrayList<String> = ArrayList()
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +51,42 @@ class MainActivity : AppCompatActivity() {
 
         binding.up.animate().translationX(1400f).setDuration(750).setStartDelay(2000)
         binding.down.animate().translationX(-1400f).setDuration(750).setStartDelay(2000)
+
+        //setting up retrofit
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://akabab.github.io/superhero-api/api/")  //must end with fwd slash - else you'll get an error and will struggle for 30 mins 😂
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val api = retrofit.create(ApiHeroAll::class.java)
+
+        api.fetchDetails().enqueue(object : Callback<List<HeroDetails>> {
+            override fun onResponse(call: Call<List<HeroDetails>>, response: Response<List<HeroDetails>>
+            ) {
+                Log.d("Amarjit", "${response.body()!![4].images.md}")
+
+                for( i in 0..550){
+                    nameS.add(response.body()!![i].name)
+                    genderS.add(response.body()!![i].appearance.gender)
+                    fNameS.add(response.body()!![i].biography.fullName)
+                    alignmentS.add(response.body()!![i].biography.alignment)
+                    p1S.add(response.body()!![i].powerstats.intelligence)
+                    p2S.add(response.body()!![i].powerstats.strength)
+                    p3S.add(response.body()!![i].powerstats.speed)
+                    p4S.add(response.body()!![i].powerstats.durability)
+                    p5S.add(response.body()!![i].powerstats.power)
+                    p6S.add(response.body()!![i].powerstats.combat)
+                    fAS.add(response.body()!![i].biography.firstAppearance)
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<HeroDetails>>, t: Throwable) {
+                Log.d("Amarjit", "onFailure")
+                t.message?.let { Log.d("server upload abc", it) }
+            }
+
+        })
 
         homeScreen()
     }

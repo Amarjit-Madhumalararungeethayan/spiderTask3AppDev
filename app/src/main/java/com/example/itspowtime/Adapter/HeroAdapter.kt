@@ -1,5 +1,6 @@
 package com.example.itspowtime.Adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -7,9 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.itspowtime.HeroDetails
+import com.example.itspowtime.HeroGallery
 import com.example.itspowtime.R
 import kotlinx.android.synthetic.main.hero_item.view.*
 
@@ -55,7 +59,14 @@ class HeroAdapter(context : Context, images: ArrayList<String>) : RecyclerView.A
             view.imageView.setOnClickListener {  view : View ->
                 val intent = Intent(context, HeroDetails::class.java)
                 intent.putExtra("Position",position)
-                context.startActivity(intent)
+                val options = ViewCompat.getTransitionName(img)?.let {
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity , img,
+                        it
+                    )
+                }
+                if (options != null) {
+                    context.startActivity(intent, options.toBundle())
+                }
             }
         }
 

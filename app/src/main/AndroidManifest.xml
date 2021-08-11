@@ -14,10 +14,13 @@
         android:roundIcon="@drawable/s"
         android:supportsRtl="true"
         android:theme="@style/Theme.ItsPowTime">
-        <activity android:name=".HeroDetails"></activity>
-        <activity android:name=".HeroGallery">
-
-        </activity>
+        <activity
+            android:name=".HomePage"
+            android:label="@string/title_activity_home_page"
+            android:theme="@style/Theme.ItsPowTime.NoActionBar"></activity>
+        <activity android:name=".HeroSearch" />
+        <activity android:name=".HeroDetails" />
+        <activity android:name=".HeroGallery" />
         <activity android:name=".CreateId" />
         <activity android:name=".LoginPage" />
         <activity android:name=".Home" />

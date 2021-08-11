@@ -99,6 +99,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginStart="90dp"
         android:elevation="85dp"
+        android:transitionName="xxxx"
         android:layout_marginLeft="120dp" />
 
     <TextView
@@ -225,5 +226,18 @@
         android:elevation="40dp"
         android:foreground="@drawable/ic_baseline_home_24"
         />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Other results ..."
+        android:textColor="@color/black"
+        android:fontFamily="@font/chalkboard"
+        tools:layout_editor_absoluteX="314dp"
+        tools:layout_editor_absoluteY="333dp"
+        app:layout_constraintStart_toEndOf="@id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@id/imageView3"
+        android:elevation="75dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
