@@ -1,6 +1,7 @@
 package com.example.itspowtime.API
 
 data class HeroDetails(
+    val id : Int,
     val name : String,
     val slug : String,
     val powerstats : powerinfo,

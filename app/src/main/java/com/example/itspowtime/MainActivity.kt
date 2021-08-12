@@ -17,6 +17,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.ArrayList
 
+var idS : ArrayList<Int> = ArrayList()
+var imageS : ArrayList<String> = ArrayList()
 var nameS: ArrayList<String> = ArrayList()
 var genderS: ArrayList<String> = ArrayList()
 var fNameS: ArrayList<String> = ArrayList()
@@ -66,6 +68,8 @@ class MainActivity : AppCompatActivity() {
                 Log.d("Amarjit", "${response.body()!![4].images.md}")
 
                 for( i in 0..550){
+                    idS.add(response.body()!![i].id)
+                    imageS.add(response.body()!![i].images.lg)
                     nameS.add(response.body()!![i].name)
                     genderS.add(response.body()!![i].appearance.gender)
                     fNameS.add(response.body()!![i].biography.fullName)

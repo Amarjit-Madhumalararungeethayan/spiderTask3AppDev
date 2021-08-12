@@ -39,8 +39,13 @@ class HeroDetails : AppCompatActivity() {
             .into(binding.imageView3)
 
 
+        if(nameS[position] != null){
             binding.textView3.text = "Name : ${fNameX[position]}"
-            binding.i1.text = "Gender : ${genderX[position]}"
+        }
+        else{
+            binding.textView3.text = "Unknown"
+        }
+            binding.i1.text = "Alias : ${nameS[position]}"
             binding.i2.text = "Alignment : ${alignmentX[position]}"
             binding.i3.text = "Intelligence : ${p1X[position]}    Strength : ${p2X[position]}"
             binding.i4.text = "Speed : ${p3X[position]}           Durability: ${p4X[position]}"

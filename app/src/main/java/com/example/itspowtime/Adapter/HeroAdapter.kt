@@ -15,8 +15,10 @@ import com.bumptech.glide.Glide
 import com.example.itspowtime.HeroDetails
 import com.example.itspowtime.HeroGallery
 import com.example.itspowtime.R
+import com.example.itspowtime.imageS
 import kotlinx.android.synthetic.main.hero_item.view.*
 
+var ID = 0
 class HeroAdapter(context : Context, images: ArrayList<String>) : RecyclerView.Adapter<HeroAdapter.ViewHolder>() {
 
     var images: ArrayList<String> = images
@@ -44,6 +46,8 @@ class HeroAdapter(context : Context, images: ArrayList<String>) : RecyclerView.A
             .override(500, 500)
             .fitCenter()
             .into(holder.img)
+
+
     }
 
     override fun getItemCount():   Int {
@@ -55,10 +59,17 @@ class HeroAdapter(context : Context, images: ArrayList<String>) : RecyclerView.A
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var img : ImageView = view.findViewById(R.id.imageView)
 
+
         init  {
             view.imageView.setOnClickListener {  view : View ->
+
+                for(i in 0..550){
+                    if(imageS[i] == images[position])
+                        ID = i
+                    Log.d("identity",i.toString())
+                }
                 val intent = Intent(context, HeroDetails::class.java)
-                intent.putExtra("Position",position)
+                intent.putExtra("Position",ID)
                 val options = ViewCompat.getTransitionName(img)?.let {
                     ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity , img,
                         it
