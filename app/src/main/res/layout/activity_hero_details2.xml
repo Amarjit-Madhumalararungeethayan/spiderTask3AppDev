@@ -240,4 +240,31 @@
         app:layout_constraintBottom_toBottomOf="@id/imageView3"
         android:elevation="75dp"/>
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="40dp"
+        android:elevation="50dp"
+        app:layout_constraintStart_toEndOf="@id/imageView3"
+        app:layout_constraintTop_toTopOf="@id/imageView3"
+        app:srcCompat="@drawable/heart_gray"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add to Favourites ?"
+        android:textColor="@color/marvel_red"
+        app:layout_constraintTop_toBottomOf="@id/imageView4"
+        android:elevation="60dp"
+        app:layout_constraintStart_toEndOf="@id/imageView3"
+        android:fontFamily="@font/chalkboard"
+        android:textSize="11dp"
+        android:layout_marginLeft="8dp"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

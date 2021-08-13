@@ -8,9 +8,13 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
+import androidx.room.Room
 import com.bumptech.glide.Glide
+import com.example.itspowtime.Fav.User
+import com.example.itspowtime.Fav.UserDatabase
 import com.example.itspowtime.databinding.ActivityHeroDetails2Binding
 import kotlinx.android.synthetic.main.activity_hero_details2.*
 import java.io.ByteArrayOutputStream
@@ -53,6 +57,16 @@ class HeroDetails : AppCompatActivity() {
             binding.i6.text = "First Appearance : ${fAX[position]}"
             binding.i7.text = "If you like this check out : https://www.marvel.com"
 
+        binding.imageView4.setOnClickListener(){
+            binding.imageView4.setImageResource(R.drawable.heart_red)
+
+            val user = User(0, nameS[position])
+
+            Log.d("XXXXXXXXX", "${nameS[position]}")
+            val myRoomDatabase = Room.databaseBuilder(this,UserDatabase::class.java,"favS1").allowMainThreadQueries().build()
+            myRoomDatabase.userDao().addUser(user)
+
+        }
 
         binding.back.setOnClickListener(){
             super.onBackPressed()

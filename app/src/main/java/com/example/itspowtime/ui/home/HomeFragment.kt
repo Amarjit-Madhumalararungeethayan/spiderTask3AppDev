@@ -9,6 +9,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
+import com.example.itspowtime.Fav.UserDatabase
 import com.example.itspowtime.HeroGallery
 import com.example.itspowtime.HeroSearch
 import com.example.itspowtime.R
@@ -50,6 +52,7 @@ class HomeFragment : Fragment() {
             var ran = (0..12).random()
             binding.imC.setImageResource(comicimages[ran])
         }
+
 
         return root
     }

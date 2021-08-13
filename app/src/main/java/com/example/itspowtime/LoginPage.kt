@@ -7,6 +7,8 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.isVisible
+import androidx.room.Room
+import com.example.itspowtime.Fav.UserDatabase
 import com.example.itspowtime.databinding.ActivityLoginPageBinding
 import com.example.itspowtime.databinding.ActivityMainBinding
 import com.google.android.gms.tasks.OnCompleteListener
@@ -34,6 +36,11 @@ class LoginPage : AppCompatActivity() {
             val compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
             startActivity(intent, compat.toBundle())
             finish()
+        }
+
+        binding.ref.setOnClickListener(){
+            val myRoomDatabase = Room.databaseBuilder(this, UserDatabase::class.java,"favS").allowMainThreadQueries().build()
+            myRoomDatabase.userDao().clear()
         }
 
         binding.l4.setOnClickListener() {

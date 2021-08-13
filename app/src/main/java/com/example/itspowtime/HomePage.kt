@@ -2,6 +2,7 @@ package com.example.itspowtime
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -14,14 +15,23 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import com.example.itspowtime.API.ApiHeroAll
 import com.example.itspowtime.API.HeroDetails
+import com.example.itspowtime.Fav.UserDatabase
 import com.example.itspowtime.databinding.ActivityHomePageBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import java.util.*
+import kotlin.collections.ArrayList
+
+var favNames : ArrayList<String> = ArrayList()
+var favImages : ArrayList<String> = ArrayList()
 
 class HomePage : AppCompatActivity() {
 
@@ -42,9 +52,8 @@ class HomePage : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarHomePage.toolbar)
 
-        /**
 
-         **/
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_home_page)
@@ -87,7 +96,6 @@ class HomePage : AppCompatActivity() {
                     fAX.add(response.body()!![i].biography.firstAppearance)
 
                 }
-                Log.d("Amarjit", "${imagesX}")
 
             }
 
@@ -97,6 +105,17 @@ class HomePage : AppCompatActivity() {
             }
 
         })
+
+
+        val myRoomDatabase = Room.databaseBuilder(this,UserDatabase::class.java,"favS1").allowMainThreadQueries().build()
+
+        Log.d("Size of Database", "${myRoomDatabase.userDao().getRowCount()}")
+
+        for(i in 1..myRoomDatabase.userDao().getRowCount()){
+            favNames.add(myRoomDatabase.userDao().getName(i))
+        }
+
+        Log.d("CHECKER","${favNames}")
 
     }
 

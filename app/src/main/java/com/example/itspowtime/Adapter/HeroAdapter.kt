@@ -8,25 +8,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.bumptech.glide.Glide
-import com.example.itspowtime.HeroDetails
-import com.example.itspowtime.HeroGallery
-import com.example.itspowtime.R
-import com.example.itspowtime.imageS
+import com.example.itspowtime.*
+import com.example.itspowtime.Fav.User
+import com.example.itspowtime.Fav.UserDatabase
 import kotlinx.android.synthetic.main.hero_item.view.*
 
 var ID = 0
+
 class HeroAdapter(context : Context, images: ArrayList<String>) : RecyclerView.Adapter<HeroAdapter.ViewHolder>() {
 
     var images: ArrayList<String> = images
     var context: Context
 
+
     init {
         this.images = images
         this.context = context
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,6 +40,8 @@ class HeroAdapter(context : Context, images: ArrayList<String>) : RecyclerView.A
         // Passing view to ViewHolder
         return ViewHolder(view)
     }
+
+
     // Binding data to the into specified position
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
@@ -60,6 +66,7 @@ class HeroAdapter(context : Context, images: ArrayList<String>) : RecyclerView.A
         var img : ImageView = view.findViewById(R.id.imageView)
 
 
+
         init  {
             view.imageView.setOnClickListener {  view : View ->
 
@@ -78,11 +85,17 @@ class HeroAdapter(context : Context, images: ArrayList<String>) : RecyclerView.A
                 if (options != null) {
                     context.startActivity(intent, options.toBundle())
                 }
+
             }
         }
-
     }
+    private fun insertData() {
 
+        val user = User(0, nameS[ID])
+        val myRoomDatabase = Room.databaseBuilder(context,UserDatabase::class.java,"favs").build()
+        myRoomDatabase.userDao().addUser(user)
+        Toast.makeText(context,"Added ${nameS[ID]}", Toast.LENGTH_SHORT).show()
+    }
 
 
 }
