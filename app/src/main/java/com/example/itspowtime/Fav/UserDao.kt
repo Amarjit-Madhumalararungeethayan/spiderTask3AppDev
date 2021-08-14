@@ -25,4 +25,7 @@ interface UserDao  {
 
     @Query("DELETE FROM favS1")
     fun clear()
+
 }
+
+
